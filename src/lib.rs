@@ -118,7 +118,7 @@ pub mod file;
 /// A set of putting a comment
 ///
 /// # Example how to post new comment
-///  
+///
 /// ```
 /// use virustotal3::{VtClient, VtType};
 ///
@@ -287,7 +287,7 @@ pub struct IpAttributes {
     pub last_analysis_stats: Option<LastAnalysisStats>,
     pub whois_date: Option<u32>,
     pub last_analysis_results: Option<Value>,
-    pub reputation: Option<u32>,
+    pub reputation: Option<i32>,
     pub last_modification_date: Option<u32>,
     pub total_votes: Option<TotalVotes>,
 }
