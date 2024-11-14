@@ -19,7 +19,7 @@
 //! ```
 //!
 
-use serde::Deserialize;
+use serde::{ Deserialize, Serialize };
 use serde_json::Value;
 
 /// A set of scanning an URL
@@ -155,24 +155,24 @@ pub mod comment;
 
 /// Comments structs
 /// Example: <https://github.com/seanmonstar/reqwest/blob/master/examples/json_typed.rs>
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct CommentGetResponse {
     pub meta: Meta,
     pub data: Vec<Comment>,
     pub links: ScanLink,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct CommentPutResponse {
     pub data: Comment,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Meta {
     pub count: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Comment {
     pub attributes: CommentAttributes,
     #[serde(rename = "type")]
@@ -181,7 +181,7 @@ pub struct Comment {
     pub links: ScanLink,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct CommentAttributes {
     pub date: u32,
     pub text: String,
@@ -190,7 +190,7 @@ pub struct CommentAttributes {
     pub tags: Option<Vec<String>>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct CommentVote {
     pub positive: u32,
     pub abuse: u32,
@@ -198,12 +198,12 @@ pub struct CommentVote {
 }
 
 /// Domains structs
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct DomainReportResponse {
     pub data: DomainReportData,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct DomainReportData {
     pub attributes: DomainAttributes,
     #[serde(rename = "type")]
@@ -212,7 +212,7 @@ pub struct DomainReportData {
     pub links: ScanLink,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct DomainAttributes {
     pub last_dns_records: Option<Value>,
     pub jarm: Option<String>,
@@ -234,7 +234,7 @@ pub struct DomainAttributes {
     pub total_votes: Option<TotalVotes>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PopularityRanks {
     pub majestic: Option<Rank>,
     pub statvoo: Option<Rank>,
@@ -243,13 +243,13 @@ pub struct PopularityRanks {
     pub quantcast: Option<Rank>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Rank {
     pub timestamp: u32,
     pub rank: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct LastAnalysisStats {
     pub harmless: u32,
     pub malicious: u32,
@@ -258,19 +258,19 @@ pub struct LastAnalysisStats {
     pub timeout: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct TotalVotes {
     pub harmless: u32,
     pub malicious: u32,
 }
 
 /// IP structs
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct IpReportResponse {
     pub data: IpReportData,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct IpReportData {
     pub attributes: IpAttributes,
     #[serde(rename = "type")]
@@ -279,7 +279,7 @@ pub struct IpReportData {
     pub links: ScanLink,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct IpAttributes {
     pub whois: Option<Value>,
     pub tags: Option<Vec<Value>>,
@@ -293,12 +293,12 @@ pub struct IpAttributes {
 }
 
 /// URLs structs
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct UrlScanResponse {
     pub data: UrlScanData,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct UrlScanData {
     #[serde(rename = "type")]
     pub vtype: String,
@@ -306,24 +306,24 @@ pub struct UrlScanData {
     pub links: ScanLink,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ScanLink {
     #[serde(rename = "self")]
     pub vself: String,
 }
 
 /// Files structs
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct FileScanResponse {
     pub data: FileScanResponseData,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct FileRescanResponse {
     pub data: FileScanResponseData,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct FileScanResponseData {
     #[serde(rename = "type")]
     pub vtype: String,
